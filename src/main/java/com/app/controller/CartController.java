@@ -52,7 +52,12 @@ public class CartController {
 		map.addAttribute("pro", p);
 		return "GetProduct";
 	}
-	
+	@RequestMapping("/allData")
+	public String getAllDetails(Model map) {
+		List<Product> list=rest.getAll();
+		map.addAttribute("list", list);
+		return "AllData";
+	}
 	
 
 }
