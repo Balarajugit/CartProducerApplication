@@ -30,34 +30,34 @@ public class CartController {
 		m.addAttribute("msg", msg);
 		return "Product";
 	}
-	@RequestMapping("/getPage")
-	public String getPage() {
-		return "GetId";
-	}
 	
-	@RequestMapping("/deletePage")
-	public String deletePage() {
-		return "Delete";
-	}
 	
-	@RequestMapping(value = "/delete",method = RequestMethod.POST)
-	public String deleteById(@RequestParam Integer id,Model map) {
-		rest.delete(id);
-		map.addAttribute("pro", "record deleted sucessfully");
-		return "Delete";
-	}
-	@RequestMapping(value = "getOne")
-	public String getById(@RequestParam Integer id,Model map) {
-		Product p=rest.getByIdProduct(id);
-		map.addAttribute("pro", p);
-		return "GetProduct";
-	}
 	@RequestMapping("/allData")
 	public String getAllDetails(Model map) {
 		List<Product> list=rest.getAll();
 		map.addAttribute("list", list);
 		return "AllData";
 	}
+	@RequestMapping("/update")
+	public String getUpdatePage(@RequestParam Integer id,Model map) {
+		Product product = rest.getByIdProduct(id);
+		map.addAttribute("product", product);
+		return "Update";
+	}
+	@RequestMapping(value = "/updated",method = RequestMethod.POST)
+	public String updatedPage(@ModelAttribute Product p,Model map) {
+		
+		String message = rest.updateProduct(p);
+		map.addAttribute("mess", message);
+		return "redirect:allData";
+	}
 	
+	
+	@RequestMapping("/delete")
+	public String deleteProduct(@RequestParam Integer id,Model map) {
+		rest.delete(id);
+		map.addAttribute("msg", "record deleted sucessfully");
+		return "redirect:allData";
+	}
 
 }

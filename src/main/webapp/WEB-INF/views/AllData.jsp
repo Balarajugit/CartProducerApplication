@@ -18,6 +18,7 @@
 <th><b>Gst</b></th>
 <th><b>Discount</b></th>
 <th><b>FinalCost</b></th>
+<th><b>Operations</b></th>
 </tr>
 <c:forEach items="${list }" var="p">
 <tr>
@@ -28,8 +29,13 @@
 <td><c:out value="${p.gst }"></c:out> </td>
 <td><c:out value="${p.discount }"></c:out> </td>
 <td><c:out value="${p.finelCost}"></c:out> </td>
+<td><a href="update?id=${p.id }">Update ||</a> 
+<a href="delete?id=${p.id }">Delete</a>
+</td>
 </tr>
 </c:forEach>
 </table>
+${mess }
+${msg }
 </body>
 </html>

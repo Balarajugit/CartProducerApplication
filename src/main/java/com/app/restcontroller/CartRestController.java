@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +35,11 @@ public class CartRestController {
 	@GetMapping("/idget")
 	public Product getByIdProduct(@RequestParam Integer id) {
 		return client.getById(id);
+	}
+	@PutMapping("/modifyProduct")
+	public String updateProduct(@RequestBody Product p) {
+		String msg=client.updateProduct(p);
+		return msg;
 	}
 
 }
